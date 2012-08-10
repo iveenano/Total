@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Media Player Lib</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px 0 20px 20px;
+      }
+
+      article {
+        float: left;
+        margin-right: 20px;
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        clear: left;
+        padding-top: 1em;
+      }
+
+      h2 {
+        margin-top: 0;
+      }
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="../lib/mediaplayerlib.js"></script>
+    <script>
+      var vimeo = {
+        "@type": "VideoObject",
+        "itemType": "VideoObject",
+        "playerType": "iframe",
+        "embedURL": "http://player.vimeo.com/video/1024832",
+        "url": "https://vimeo.com/1024832"
+      };
+
+      var youtube = {
+        "@type": "VideoObject",
+        "playerType": "iframe",
+        "embedURL": "http://www.youtube.com/v/jOUAIRbrv6s?version=3&f=videos&app=youtube_gdata"
+      };
+
+      var mp4 = {
+        "@type": "VideoObject",
+        "itemType": "VideoObject",
+        "contentURL": "http://clips.vorwaerts-gmbh.de/VfE_html5.mp4"
+      };
+
+      var soundcloud = {
+        "url": "http://soundcloud.com/arsy/small-piece"
+      };
+
+      var slideshare = {
+        "url": "http://www.slideshare.net/haraldf/business-quotes-for-2011"
+      };
+
+      var ooyala = {
+        "@type": "VideoObject",
+        "embedURL": "http://player.ooyala.com/player.js?embedCode=t0bzFhNDpuUhvu1X4TEy3Txwa_KULnG2",
+        "playerType": "script",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Ooyala"
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Default Strategy</h1>
+
+    <article id="default-vimeo">
+      <h2>Vimeo</h2>
+      <script>
+        mediaFactory.resolve(vimeo, {width: 320, height: 240}).toHtml(function(err, html) {
+          $('#default-vimeo').append(html);
+        });
+      </script>
+    </article>
+
+    <article id="default-youtube">
+      <h2>Youtube</h2>
+      <script>
+        mediaFactory.resolve(youtube, {width: 320, height: 240}).toHtml(function(err, html) {
+          $('#default-youtube').append(html);
+        });
+      </script>
+    </article>
+
+    <article id="default-mp4">
+      <h2>MP4</h2>
+      <script>
+        mediaFactory.resolve(mp4, {width: 320, height: 240}).toHtml(function(err, html) {
+          $('#default-mp4').append(html);
+        });
+      </script>
+    </article>
+
+    <article id="default-ooyala">
+      <h2>Ooyala</h2>
+      <script>
+        mediaFactory.resolve(ooyala, {width: 320, height: 240}).toHtml(function(err, html) {
+          $('#default-ooyala').append(html);
+        });
+      </script>
+    </article>
+
+    <h1>HTML5 Strategy</h1>
+
+    <article id="html5-vimeo">
+      <h2>Vimeo</h2>
+      <script>
+        mediaFactory.resolve(vimeo, {strategy: 'html5', width: 320, height: 240}).toHtml(function(err, html) {
+          $('#html5-vimeo').append(html);
+        });
+      </script>
+    </article>
+
+    <article id="html5-youtube">
+      <h2>Youtube</h2>
+      <script>
+        mediaFactory.resolve(youtube, {strategy: 'html5', width: 320, height: 240}).toHtml(function(err, html) {
+          $('#html5-youtube').append(html);
+        });
+      </script>
+    </article>
+
+    <article id="html5-mp4">
+      <h2>MP4</h2>
+      <script>
+        mediaFactory.resolve(mp4, {strategy: 'html5', width: 320, height: 240}).toHtml(function(err, html) {
+          $('#html5-mp4').append(html);
+        });
+      </script>
+    </article>
+
+    <!--
+    Ooyala is restricted to one video per page for the time being, sigh!
+    <article id="html5-ooyala">
+      <h2>Ooyala</h2>
+      <script>
+        mediaFactory.resolve(ooyala, {strategy: 'html5', width: 320, height: 240}).toHtml(function(err, html) {
+          $('#html5-ooyala').append(html);
+        });
+      </script>
+    </article>
+    -->
+
+    <h1>oEmbed Strategy</h1>
+
+    <article id="oembed-vimeo">
+      <h2>Vimeo</h2>
+      <script>
+        mediaFactory.resolve(vimeo, {strategy: 'oembed', width: 320, height: 240}).toHtml(function(err, html) {
+          $('#oembed-vimeo').append(html);
+        });
+      </script>
+    </article>
+
+    <article id="oembed-soundcloud">
+      <h2>SoundCloud</h2>
+      <script>
+        mediaFactory.resolve(soundcloud, {strategy: 'oembed', width: 320, height: 240}).toHtml(function(err, html) {
+          $('#oembed-soundcloud').append(html);
+        });
+      </script>
+    </article>
+
+    <article id="oembed-slideshare">
+      <h2>SlideShare</h2>
+      <script>
+        mediaFactory.resolve(slideshare, {strategy: 'oembed', width: 320, height: 240}).toHtml(function(err, html) {
+          $('#oembed-slideshare').append(html);
+        });
+      </script>
+    </article>
+  </body>
+</html>
